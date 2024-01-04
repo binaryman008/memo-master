@@ -1,14 +1,13 @@
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import (
     ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView,
-    RetrieveAPIView,
 )
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from notes.serializers import NotesSerializer
 
 
 class NotesLCView(ListCreateAPIView):
-    authentication_classes = [SessionAuthentication]
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
-    
+    serializer_class = NotesSerializer
     

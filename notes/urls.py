@@ -3,6 +3,6 @@ from django.urls import path, include
 from notes.api_views import NotesLCView
 
 
-urls = [
+urlpatterns = [
     path("", NotesLCView.as_view(), name="notes_lc"),
 ]
