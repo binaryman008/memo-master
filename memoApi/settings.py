@@ -28,6 +28,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Set the Elasticsearch connection settings
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': f'http://{config.ELASTICSEARCH_URL}:{config.ELASTIC_SEARCH_PORT}',  # Replace with your Elasticsearch host and port
+    },
+}
+
 
 # Application definition
 
@@ -40,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_elasticsearch_dsl',
 
     # local apps
     'users',
@@ -49,7 +57,9 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # Set your desired page size
 }
 
 AUTH_USER_MODEL = 'users.UserModel'

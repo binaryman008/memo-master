@@ -12,3 +12,8 @@ class NotesSerializer(serializers.ModelSerializer):
         validated_data["author"] = self.context["request"].user
         notes = NotesModel.objects.create(**validated_data)
         return notes
+    
+
+class NotesSearchSerializer(serializers.Serializer):
+    q = serializers.CharField(max_length=255, required=True, help_text='Search query')
+
