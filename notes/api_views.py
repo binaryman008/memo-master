@@ -31,6 +31,8 @@ if not es.indices.exists(index='notes'):
     # Create the index if it doesn't exist
     es.indices.create(index='notes')
 
+
+# @method_decorator(rate_limiter, name='dispatch')
 class NotesLCView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -42,6 +44,7 @@ class NotesLCView(ListCreateAPIView):
         return NotesModel.objects.filter(author=self.request.user)
     
 
+@method_decorator(rate_limiter, name='dispatch')
 class NotesRUDView(RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -50,6 +53,7 @@ class NotesRUDView(RetrieveUpdateDestroyAPIView):
     lookup_field = "id"
 
 
+# @method_decorator(rate_limiter, name='dispatch')
 class ShareNotesAPIView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
@@ -70,6 +74,8 @@ class ShareNotesAPIView(APIView):
 class NotesSearchAPIView(ListAPIView):
     serializer_class = NotesSerializer  # Replace with your serializer
     search_serializer_class = NotesSearchSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         try:

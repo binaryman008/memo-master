@@ -9,6 +9,7 @@ from django.utils.decorators import method_decorator
 from notes.rate_limiter import rate_limiter
 
 
+@method_decorator(rate_limiter, name='dispatch')
 class RegisterApi(CreateAPIView):
     serializer_class = UserRegistrationSerializer
 

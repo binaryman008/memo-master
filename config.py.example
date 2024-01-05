@@ -5,3 +5,4 @@ DB_USER = "postgres"
 DB_PASSWORD = "postgres"
 ELASTICSEARCH_URL = "localhost"
 ELASTIC_SEARCH_PORT = 9200
+LOG_FILE_LOCATION = "/Users/ankushsingh/memo-master/Logs/"
