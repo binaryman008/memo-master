@@ -8,7 +8,6 @@ class NotesModelTestCase(TestCase):
         # Create a user for testing
         self.user = get_user_model().objects.create_user(
             email='testuser@example.com',
-            email_id='testuser@example.com',
             password='testpassword'
         )
 

@@ -7,7 +7,7 @@ class UserRegistrationSerializerTest(TestCase):
     def test_create_user(self):
         data = {
             'password': 'testpassword',
-            'email_id': 'testuser@example.com',
+            'email': 'testuser@example.com',
             'first_name': 'John',
             'last_name': 'Doe'
         }
@@ -17,7 +17,7 @@ class UserRegistrationSerializerTest(TestCase):
 
         user = serializer.save()
 
-        self.assertEqual(user.email_id, data['email_id'])
+        self.assertEqual(user.email, data['email'])
         self.assertEqual(user.first_name, data['first_name'])
         self.assertEqual(user.last_name, data['last_name'])
         self.assertTrue(user.check_password(data['password']))
@@ -25,7 +25,7 @@ class UserRegistrationSerializerTest(TestCase):
 class LoginSerializerTest(TestCase):
     def test_valid_login_data(self):
         data = {
-            'email_id': 'testuser@example.com',
+            'email': 'testuser@example.com',
             'password': 'testpassword'
         }
 
@@ -34,7 +34,7 @@ class LoginSerializerTest(TestCase):
 
     def test_invalid_login_data(self):
         data = {
-            'email_id': 'testuser@example.com',
+            'email': 'testuser@example.com',
             'password': ''
         }
 

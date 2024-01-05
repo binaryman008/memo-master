@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import logging
 from pathlib import Path
 import config
 
@@ -92,6 +93,40 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {process:d} {thread:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "filters": {
+        "require_debug_true": {
+            "()": "django.utils.log.RequireDebugTrue",
+        },
+    },
+    'handlers': {
+        'fileInfo': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': config.LOG_FILE_LOCATION + 'info.log',  # Change the file name and path as needed
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['fileInfo'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 WSGI_APPLICATION = 'memoApi.wsgi.application'
 
