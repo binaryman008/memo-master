@@ -18,6 +18,7 @@ Python, Django, Django Rest Framework, Postgres, Elastic Search
 3. ElasticSearch server up and running [Download Here](https://www.elastic.co/downloads/elasticsearch)
 
 ## Installation and Project Setup
+1. Create a db in postgres `createdb -U postgres notes`
 1. Clone the repository
 2. `cd memo-master`
 3. create a virtual environment `python3 -m venv env`
